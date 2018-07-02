@@ -4,19 +4,11 @@ from longitude import *
 # Plus the right ascension(RA) of the observer's zenith at the stated time
 # Returns estimated longitude
 
-# year, month, day
 D0 = Julian(2018,7,2)
-
-print("D0 = " + str(D0))
-
-GMST = GreenwichMST(D0,3.333)
-
-print("GMST = " + str(GMST))
-
-GAST = GreenwichAST(D0,3.3333,GMST)
-
-print("GAST = " + str(GAST))
-
+print(D0)
+GMST = GreenwichMST(D0,8.3333)
+print(GMST)
+GAST = GreenwichAST(D0,8.3333,GMST)
+print(GAST)
 long = longitude(-33.338504,GAST)
-
-print("long = " + str(long))
+print(long)
