@@ -23,7 +23,9 @@ def GreenwichAST(D0,hour,GMST):
     return GAST
 
 def Julian(year,month,day):
-    D0 = year*365.25 + days(month) + day - 2451545.0
+    # julian day value of jan 1 2000 at noon
+    jan_1_2000_noon = 2451545
+    D0 = year * 365.25 + days(month) + day - jan_1_2000_noon
     return D0
 
 def days(mon):
