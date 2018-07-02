@@ -4,7 +4,6 @@ from longitude import *
 # Plus the right ascension(RA) of the observer's zenith at the stated time
 # Returns estimated longitude
 
-# year, month, day
 D0 = Julian(2018,7,2)
 
 print("D0 = " + str(D0))

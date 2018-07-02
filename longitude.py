@@ -46,7 +46,6 @@ def GreenwichAST(D0,hour,GMST):
     # The correction term is called the nutation in right ascension or the equation of the equinoxes. Thus,
     # GAST = GMST + eqeq.
     GAST = GMST + eqeq
-
     #GAST = GAST%24
     return GAST
 
