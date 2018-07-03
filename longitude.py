@@ -25,8 +25,7 @@ def GreenwichMST(D0,hour):
     # GMST = 18.697374558 + 24.06570982441908*D
 
     # It will be necessary to reduce GMST to the range 0h to 24h
-    # GMST = GMST % 24 # maybe this goes to 23?
-    GMST = GMST % 24 # I think this means 0 to 24, including the 0, and excluding the 24
+    GMST = GMST % 24 # maybe this goes to 23?
 
     return GMST
 
@@ -62,12 +61,12 @@ def Julian(year,month,day):
     # https://astronomy.stackexchange.com/questions/18391/why-is-jd-2451545-0-january-1-2000-noon-instead-of-jd-2451558-0/18394#18394?newreg=3281be391b59402ea2c578ac933f38c1
     jan_1_2000_noon = 2451545.0 # 2451545.0
     # total number of years since Jan 1, 4713 BC
-    D0 = ((year+4713) * 365.25) + float(days(month)) + float(day) - jan_1_2000_noon
+    D0 = ((year+4713.0) * 365.25) + float(days(month)) + float(day) - jan_1_2000_noon
     # print("Julian - year * 365.25 + days(month) + day = " + str(year * 365.25 + days(month) + day))
     return D0
 
 def days(mon):
-    dys = [0,31,59,90,120,151,181,212,243,273,304,334]
+    dys = [ 0.0, 31.0, 59.0, 90.0, 120.0, 151.0, 181.0, 212.0, 243.0, 273.0, 304.0, 334.0 ]
     return dys[ mon - 1 ]
 
 # https://stackoverflow.com/questions/2579535/how-to-convert-dd-to-dms-in-python

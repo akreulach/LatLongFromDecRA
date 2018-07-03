@@ -23,8 +23,4 @@ print("GAST = " + str(GAST) + " " + str(dd_to_dms(GAST)))
 
 long = longitude(-33.338504,GAST)
 
-print("long = " + str(long))
-
-dms = dd_to_dms(long)
-
-print("long as dms = " + str(dms))
+print("long = " + str(long) + " " + str(dd_to_dms(long)))
