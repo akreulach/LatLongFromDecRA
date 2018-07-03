@@ -101,7 +101,7 @@ def days_since_julian_epoch(d):
     offset = -12.5 # 13 missing days in the julian calendar
     JD0 = ((d.year+4713.0-1.0) * 365.25) + days_since_jan_1(d.year, d.month, d.day)
     print("days_since_julian_epoch() - JD0 = " + str(JD0))
-    print("difference = " + str( 2458303 - JD0 ))
+    # print("difference = " + str( 2458303 - JD0 ))
     jan_1_2000_noon = 2451545.0 # 2451545.0
     # total number of years since Jan 1, 4713 BC
     D0 = (JD0 + offset) - jan_1_2000_noon

@@ -6,12 +6,14 @@ import datetime as datetime
 # Returns estimated longitude
 
 # D0 = Julian(2018,7,2)
-
+# make 'now' be the system time's current time
 now = datetime.datetime.now()
-print("now = " + str(now
-))
+print("now = " + str(now))
 D0 = days_since_julian_epoch(now)
 print("D0 = " + str(D0))
+
+# make the
+now = datetime.datetime(2018,7,2,12+3,20)
 
 # the time is 3:20
 hour = now.hour
@@ -29,6 +31,6 @@ GAST = GreenwichAST(D0, hour, GMST)
 print("GAST = " + str(GAST) + " " + str(dd_to_dms(GAST)))
 # print("GAST as dms = " + str(dd_to_dms(GAST)))
 
-long = longitude(-33.338504,GAST)
-
-print("long = " + str(long) + " " + str(dd_to_dms(long)))
+lat = -33.338504
+lon = longitude(lat, GAST)
+print("lon = " + str(lon) + " " + str(dd_to_dms(lon)))
