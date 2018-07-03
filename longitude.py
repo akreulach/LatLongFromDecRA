@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import math as math
+import datetime as datetime
 
 # important links
 # * http://aa.usno.navy.mil/faq/docs/GAST.php
@@ -12,22 +13,26 @@ def longitude(RA,GAST):
 
 # Greenwich Mean Sidereal Time
 def GreenwichMST(D0,hour):
-    D = D0 + hour/24
+    D = float(D0) + float(hour)/24.0
 
     # T = D/36525 - the number of centuries since the year 2000
-    T = D/36525
+    T = float(D)/36525.0
 
     # GMST = 6.697374558 + 0.06570982441908 D0 + 1.00273790935 H + 0.000026 T2
-    GMST = 6.697374558 + (0.06570982441908 * D0) + (1.00273790935 * hour) + 0.000026 * math.pow(T,2)
+    GMST = 6.697374558 + (0.06570982441908 * D0) + (1.00273790935 * hour) + (0.000026 * math.pow(T,2))
+
+    # The following alternative formula can be used with a loss of precision of 0.1 second per century:
+    # GMST = 18.697374558 + 24.06570982441908*D
 
     # It will be necessary to reduce GMST to the range 0h to 24h
-    GMST = GMST % 24
+    # GMST = GMST % 24 # maybe this goes to 23?
+    GMST = GMST % 24 # I think this means 0 to 24, including the 0, and excluding the 24
 
     return GMST
 
 # Greenwich Apparent Sidereal Time
 def GreenwichAST(D0,hour,GMST):
-    D     = D0 + hour/24
+    D     = D0 + float(hour)/24.0
 
     # ε = 23.4393 - 0.0000004 D
     eps   = 23.4393 - 0.0000004*D
@@ -39,7 +44,7 @@ def GreenwichAST(D0,hour,GMST):
     omega = 125.04 - 0.052954*D
 
     # Δψ ≈ -0.000319 sin Ω - 0.000024 sin 2L
-    delW = -0.000319*math.sin(omega) - 0.000024*math.sin(2*L)
+    delW = -0.000319*math.sin(omega) - 0.000024*math.sin(2.0*L)
 
     eqeq = delW*math.cos(eps)
 
@@ -50,10 +55,15 @@ def GreenwichAST(D0,hour,GMST):
     return GAST
 
 # return number of days passed since noon
+# "For both of these Julian dates, compute the number of days and fraction
+# (+ or -) from 2000 January 1, 12h UT, Julian date 2451545.0:"
 def Julian(year,month,day):
     # julian day value of jan 1 2000 at noon
+    # https://astronomy.stackexchange.com/questions/18391/why-is-jd-2451545-0-january-1-2000-noon-instead-of-jd-2451558-0/18394#18394?newreg=3281be391b59402ea2c578ac933f38c1
     jan_1_2000_noon = 2451545.0 # 2451545.0
-    D0 = year * 365.25 + days(month) + day - jan_1_2000_noon
+    # total number of years since Jan 1, 4713 BC
+    D0 = (year+4713) * 365.25 + days(month) + day - jan_1_2000_noon
+    # print("Julian - year * 365.25 + days(month) + day = " + str(year * 365.25 + days(month) + day))
     return D0
 
 def days(mon):
