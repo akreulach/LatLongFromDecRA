@@ -62,12 +62,12 @@ def Julian(year,month,day):
     # https://astronomy.stackexchange.com/questions/18391/why-is-jd-2451545-0-january-1-2000-noon-instead-of-jd-2451558-0/18394#18394?newreg=3281be391b59402ea2c578ac933f38c1
     jan_1_2000_noon = 2451545.0 # 2451545.0
     # total number of years since Jan 1, 4713 BC
-    D0 = (year+4713) * 365.25 + days(month) + day - jan_1_2000_noon
+    D0 = ((year+4713) * 365.25) + float(days(month)) + float(day) - jan_1_2000_noon
     # print("Julian - year * 365.25 + days(month) + day = " + str(year * 365.25 + days(month) + day))
     return D0
 
 def days(mon):
-    dys = [0,31,59,90.120,151,181,212,243,273,304,334]
+    dys = [0,31,59,90,120,151,181,212,243,273,304,334]
     return dys[ mon - 1 ]
 
 # https://stackoverflow.com/questions/2579535/how-to-convert-dd-to-dms-in-python
