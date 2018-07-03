@@ -85,6 +85,7 @@ def days_since_jan_1(year, month, day):
     # https://stackoverflow.com/questions/8258432/days-between-two-dates-in-python
     curr_month = datetime.date(year, month, day)
     jan_1 = datetime.date(year, 1, 1)
+    print("days_since_jan_1 - days_since_jan_1 = " + str( float((curr_month - jan_1).days) ))
     return float((curr_month - jan_1).days)
     # dys = [ 0.0, 31.0, 59.0, 90.0, 120.0, 151.0, 181.0, 212.0, 243.0, 273.0, 304.0, 334.0 ]
     # return dys[ mon - 1 ]
@@ -94,3 +95,14 @@ def dd_to_dms(dd):
     min,sec = divmod(dd*3600,60)
     deg,min = divmod(min,60)
     return deg,min,sec
+
+def days_since_julian_epoch(d):
+    # 2458303
+    offset = -12.5 # 13 missing days in the julian calendar
+    JD0 = ((d.year+4713.0-1.0) * 365.25) + days_since_jan_1(d.year, d.month, d.day)
+    print("days_since_julian_epoch() - JD0 = " + str(JD0))
+    print("difference = " + str( 2458303 - JD0 ))
+    jan_1_2000_noon = 2451545.0 # 2451545.0
+    # total number of years since Jan 1, 4713 BC
+    D0 = (JD0 + offset) - jan_1_2000_noon
+    return (JD0 + offset) - jan_1_2000_noon
