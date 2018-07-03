@@ -9,6 +9,7 @@ D0 = Julian(2018,7,2)
 print("D0 = " + str(D0))
 
 # the time is 3:20
+# hour = 12.0 + 3.0 + (20.0/60.0)
 hour = 3.0 + (20.0/60.0)
 
 # GMST - Greenwich Mean Sidereal Time
