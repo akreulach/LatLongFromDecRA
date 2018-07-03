@@ -23,7 +23,10 @@ def GreenwichMST(D0, hour):
     print("T = " + str(T))
 
     # GMST = 6.697374558 + 0.06570982441908 D0 + 1.00273790935 H + 0.000026 T2
-    GMST = 6.697374558 + (0.06570982441908 * D0) + (1.00273790935 * hour) + (0.000026 * math.pow(T,2))
+    GMST = 6.697374558 + \
+           (0.06570982441908 * D0) + \
+           (1.00273790935 * hour) + \
+           (0.000026 * math.pow(T,2))
 
     # The following alternative formula can be used with a loss of precision of 0.1 second per century:
     # GMST = 18.697374558 + 24.06570982441908*D
@@ -37,15 +40,15 @@ def GreenwichMST(D0, hour):
 def GreenwichAST(D0, hour, GMST):
 
     # JD = JD0 + H/24
-    D     = D0 + float(hour)/24.0
+    D = D0 + float(hour)/24.0
 
     # ε = 23.4393 - 0.0000004 D
     # - Longitude of the ascending node of the Moon
-    eps   = 23.4393 - 0.0000004*D
+    eps = 23.4393 - 0.0000004*D
 
     # L = 280.47 + 0.98565 D.
     # - mean longitude of the sun
-    L     = 280.47  + 0.98565*D
+    L = 280.47 + 0.98565*D
 
     # Ω = 125.04 - 0.052954 D
     # - the obliquity
@@ -98,7 +101,7 @@ def dd_to_dms(dd):
 
 def days_since_julian_epoch(d):
     # 2458303
-    offset = -12.5 # 13 missing days in the julian calendar
+    offset = -12.5 # 13 missing days in the julian calendar + the midnight to noon of 4713
     JD0 = ((d.year+4713.0-1.0) * 365.25) + days_since_jan_1(d.year, d.month, d.day)
     print("days_since_julian_epoch() - JD0 = " + str(JD0))
     # print("difference = " + str( 2458303 - JD0 ))
